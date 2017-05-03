@@ -1,11 +1,15 @@
 package com.example.coolweather.db;
 
+import com.example.coolweather.util.LogUtil;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
+	
+	public static final String TAG = "CoolWeatherOpenHelper";
 	
 	/*
 	 * Province的建表语句
@@ -37,8 +41,11 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		db.execSQL(CREATE_PROVINCE);
+		LogUtil.d(TAG, "表Province创建成功");
 		db.execSQL(CREATE_CITY);
+		LogUtil.d(TAG, "表City创建成功");
 		db.execSQL(CREATE_COUNTRY);
+		LogUtil.d(TAG, "表Country创建成功");
 	}
 
 	@Override

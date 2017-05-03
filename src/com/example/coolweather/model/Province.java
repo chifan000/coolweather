@@ -23,5 +23,10 @@ public class Province {
 	public void setProviceCode(String proviceCode) {
 		this.proviceCode = proviceCode;
 	}
+	@Override
+	public String toString() {
+		return "Province [id=" + id + ", provinceName=" + provinceName + ", proviceCode=" + proviceCode + "]";
+	}
+	
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.coolweather.model.City;
 import com.example.coolweather.model.Country;
 import com.example.coolweather.model.Province;
+import com.example.coolweather.util.LogUtil;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,12 +18,13 @@ public class CoolWeatherDB {
 	/*
 	 * 数据库名
 	 */
-	public static final String DB_NAME = "cool_weather";
+	public static final String DB_NAME = "cool_weather.db";
 	
 	/*
 	 * 数据库版本
 	 */
 	public static final int VERSION = 1;
+	public static final String TAG = "CoolWeatherDB";
 	
 	private SQLiteDatabase db;
 	private static CoolWeatherDB coolWeatherDB;
@@ -31,6 +33,7 @@ public class CoolWeatherDB {
 	private CoolWeatherDB(Context context){
 		CoolWeatherOpenHelper dbHelper = new CoolWeatherOpenHelper(context, DB_NAME, null, VERSION);
 		db = dbHelper.getWritableDatabase();
+		LogUtil.d(TAG, "数据库创建成功");
 	}
 	
 	/*
@@ -131,7 +134,7 @@ public class CoolWeatherDB {
 	 */
 	public List<Country> loadCountry(int cityId){
 		List<Country> list = new ArrayList<Country>();
-		Cursor cursor = db.query("City", null, "city_id = ?", new String[]{String.valueOf(cityId)},
+		Cursor cursor = db.query("Country", null, "city_id = ?", new String[]{String.valueOf(cityId)},
 				null, null, null);
 		if(cursor.moveToFirst()){
 			do{
@@ -148,23 +151,4 @@ public class CoolWeatherDB {
 		}
 		return list;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
